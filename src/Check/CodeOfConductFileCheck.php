@@ -13,6 +13,11 @@ class CodeOfConductFileCheck extends Check
         return 'has_code_of_conduct_file';
     }
 
+    public function getDescription()
+    {
+        return 'Has a code of conduct file';
+    }
+
     public function run()
     {
         $options = [

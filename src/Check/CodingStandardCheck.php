@@ -3,6 +3,7 @@
 namespace SilverStripe\ModuleRatings\Check;
 
 use SilverStripe\ModuleRatings\Check;
+use Symfony\Component\Config\Resource\ComposerResource;
 
 class CodingStandardCheck extends Check
 {
@@ -25,6 +26,11 @@ class CodingStandardCheck extends Check
         return 'coding_standards';
     }
 
+    public function getDescription()
+    {
+        return 'The PHP code in this module passes the SilverStripe lint rules (mostly PSR-2)';
+    }
+
     /**
      * Get PHP CodeSniffer and run it over the current module. Assigns a successful result if the codebase passes
      * the linting check with no errors.
@@ -35,7 +41,12 @@ class CodingStandardCheck extends Check
         $path = $this->getSuite()->getModuleRoot();
 
         $output = null;
-        exec('cd ' . BASE_PATH . ' && vendor/bin/phpcs -q ' . $standard . ' ' . $path . '/**/*.php', $ouput, $exitCode);
+        exec(
+            'cd ' . dirname(__FILE__) . '/../../../../../ && vendor/bin/phpcs -q '
+            . $standard . ' ' . $path,
+            $ouput,
+            $exitCode
+        );
         if ($exitCode == 0) {
             $this->setSuccessful(true);
         }

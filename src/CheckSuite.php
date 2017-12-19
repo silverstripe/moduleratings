@@ -2,8 +2,9 @@
 
 namespace SilverStripe\ModuleRatings;
 
-use Symfony\Component\Yaml\Yaml;
+use Exception;
 use InvalidArgumentException;
+use Symfony\Component\Yaml\Yaml;
 
 class CheckSuite
 {
@@ -34,11 +35,29 @@ class CheckSuite
      */
     protected $repositorySlug = '';
 
-    public function run()
+    /**
+     * Runs the check suite and processes the result of each
+     *
+     * @param callable $checkCallback If provided, will be called before each individual check is run, and will be
+     *                                passed the Check instance as the first argument, and a delegatable callback
+     *                                as the second argument for the consumer to control where the progressCheck()
+     *                                method is called in their logic
+     * @throws Exception              If no checks are defined
+     */
+    public function run(callable $checkCallback = null)
     {
+        if (!$this->getChecks()) {
+            throw new Exception('No checks have been defined! Please set some in config.yml.');
+        }
         foreach ($this->getChecks() as $check) {
             /** @var Check $check */
-            $this->processCheck($check);
+            if (is_callable($checkCallback)) {
+                $checkCallback($check, function () use ($check) {
+                    $this->processCheck($check);
+                });
+            } else {
+                $this->processCheck($check);
+            }
         }
     }
 
@@ -52,7 +71,14 @@ class CheckSuite
         $check->run();
 
         $this->addPoints($check->getResult());
-        $this->addCheckDetail($check->getKey(), $check->getResult());
+        $this->addCheckDetail(
+            $check->getKey(),
+            [
+                'description' => $check->getDescription(),
+                'points' => $check->getResult(),
+                'maximum' => $check->getPoints(),
+            ]
+        );
     }
 
     /**
@@ -62,17 +88,7 @@ class CheckSuite
      */
     public function getScore()
     {
-        return $this->getInjector()->get(Calculator::class)->calculate($this->getPoints());
-    }
-
-    /**
-     * Get an Injector from SilverStripe 3 or 4
-     *
-     * @return object Injector instance
-     */
-    public function getInjector()
-    {
-        return class_exists('Injector') ? \Injector::inst() : \SilverStripe\Core\Injector\Injector::inst();
+        return Calculator::getInstance()->calculate($this->getPoints());
     }
 
     /**
@@ -122,15 +138,15 @@ class CheckSuite
     }
 
     /**
-     * Add a specific point result for a check in this suite
+     * Add some metrics (description, points, etc) result for a check in this suite
      *
      * @param string $key
-     * @param int $points
+     * @param array $metrics
      * @return $this
      */
-    public function addCheckDetail($key, $points)
+    public function addCheckDetail($key, array $metrics)
     {
-        $this->checkDetails[$key] = (int) $points;
+        $this->checkDetails[$key] = $metrics;
         return $this;
     }
 
@@ -196,12 +212,11 @@ class CheckSuite
      */
     protected function getCheckClasses()
     {
-        $classes = [];
-
         $config = Yaml::parseFile(dirname(__FILE__) . '/../config.yml');
-
-        print_r($config);
-        exit;
+        if (empty($config[self::class]['checks'])) {
+            return [];
+        }
+        return (array) $config[self::class]['checks'];
     }
 
     /**

@@ -13,6 +13,24 @@ class Calculator
      */
     protected $maxPoints = 0;
 
+    /**
+     * @var Calculator
+     */
+    protected static $instance;
+
+    /**
+     * Get a singleton instance of this class
+     *
+     * @return Calculator
+     */
+    public static function getInstance()
+    {
+        if (self::$instance == null) {
+            self::$instance = new static;
+        }
+        return self::$instance;
+    }
+
     public function calculate($totalPoints)
     {
         return ceil(($totalPoints / $this->getMaxPoints()) * 100);

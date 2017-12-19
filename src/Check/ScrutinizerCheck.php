@@ -15,9 +15,20 @@ class ScrutinizerCheck extends Check
         return 'good_scrutinizer_score';
     }
 
+    public function getDescription()
+    {
+        return 'Has Scrutinizer CI configured and a "good" score (greater than '
+            . self::THRESHOLD . '/10, requires slug)';
+    }
+
     public function run()
     {
+        // This check requires a repository slug to be provided
         $slug = $this->getSuite()->getRepositorySlug();
+        if (!$slug) {
+            return;
+        }
+
         $result = @file_get_contents('https://scrutinizer-ci.com/api/repositories/g/' . $slug);
         $response = json_decode($result, true);
 

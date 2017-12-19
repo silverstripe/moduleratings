@@ -13,6 +13,11 @@ class LicenseCheck extends Check
         return 'has_license';
     }
 
+    public function getDescription()
+    {
+        return 'Has a license file';
+    }
+
     public function run()
     {
         $options = ['license', 'LICENSE', 'license.md', 'LICENSE.md', 'license.txt', 'LICENSE.txt'];

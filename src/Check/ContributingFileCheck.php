@@ -13,6 +13,11 @@ class ContributingFileCheck extends Check
         return 'has_contributing_file';
     }
 
+    public function getDescription()
+    {
+        return 'Has a contributing guide file';
+    }
+
     public function run()
     {
         $options = [

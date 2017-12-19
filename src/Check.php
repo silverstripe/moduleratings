@@ -33,6 +33,13 @@ abstract class Check
     abstract public function getKey();
 
     /**
+     * Get the check description, which is used for humans
+     *
+     * @return string
+     */
+    abstract public function getDescription();
+
+    /**
      * Run the check logic, set the successful result at the ened
      *
      * @return void

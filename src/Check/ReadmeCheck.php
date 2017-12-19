@@ -13,6 +13,11 @@ class ReadmeCheck extends Check
         return 'has_readme';
     }
 
+    public function getDescription()
+    {
+        return 'Has a readme file';
+    }
+
     public function run()
     {
         $options = ['readme', 'README', 'readme.md', 'README.md', 'readme.txt', 'README.txt'];

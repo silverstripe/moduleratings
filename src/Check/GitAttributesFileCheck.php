@@ -13,6 +13,11 @@ class GitAttributesFileCheck extends Check
         return 'has_gitattributes_file';
     }
 
+    public function getDescription()
+    {
+        return 'Has a .gitattributes file';
+    }
+
     public function run()
     {
         if (file_exists($this->getSuite()->getModuleRoot() . '/.gitattributes')) {

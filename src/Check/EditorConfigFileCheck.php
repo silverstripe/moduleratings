@@ -13,6 +13,11 @@ class EditorConfigFileCheck extends Check
         return 'has_editorconfig_file';
     }
 
+    public function getDescription()
+    {
+        return 'Has a .editorconfig file';
+    }
+
     public function run()
     {
         if (file_exists($this->getSuite()->getModuleRoot() . '/.editorconfig')) {

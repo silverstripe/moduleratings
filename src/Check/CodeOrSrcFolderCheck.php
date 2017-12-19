@@ -13,6 +13,11 @@ class CodeOrSrcFolderCheck extends Check
         return 'has_code_or_src_folder';
     }
 
+    public function getDescription()
+    {
+        return 'Has source code in either a "code" or a "src" folder';
+    }
+
     public function run()
     {
         $options = ['code', 'src'];

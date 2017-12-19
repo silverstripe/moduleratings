@@ -14,6 +14,12 @@ abstract class AbstractCodeCoverageCheck extends Check
 
     public function getCoverage()
     {
+        // This check requires a repository slug to be provided
+        $slug = $this->getSuite()->getRepositorySlug();
+        if (!$slug) {
+            return 0;
+        }
+
         // Priority: codecov.io
         $coverage = $this->getCodecovCoverage();
         if ($coverage === false) {
