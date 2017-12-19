@@ -1,0 +1,14 @@
+SilverStripe\ModuleRatings\CheckSuite:
+  checks:
+    - SilverStripe\ModuleRatings\Check\CodeCoverageGoodCheck
+    - SilverStripe\ModuleRatings\Check\CodeCoverageGreatCheck
+    - SilverStripe\ModuleRatings\Check\CodeOfConductFileCheck
+    - SilverStripe\ModuleRatings\Check\CodeOrSrcFolderCheck
+    - SilverStripe\ModuleRatings\Check\CodingStandardCheck
+    - SilverStripe\ModuleRatings\Check\ContributingFileCheck
+    - SilverStripe\ModuleRatings\Check\EditorConfigFileCheck
+    - SilverStripe\ModuleRatings\Check\GitAttributesFileCheck
+    - SilverStripe\ModuleRatings\Check\LicenseCheck
+    - SilverStripe\ModuleRatings\Check\ReadmeCheck
+    - SilverStripe\ModuleRatings\Check\ScrutinizerCheck
+    - SilverStripe\ModuleRatings\Check\TravisCheck

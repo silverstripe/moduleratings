@@ -16,7 +16,9 @@
         }
     ],
     "autoload": {
-        "SilverStripe\\ModuleRatings\\": "src/"
+        "psr-4": {
+            "SilverStripe\\ModuleRatings\\": "src/"
+        }
     },
     "extra": {
         "branch-alias": {
