@@ -15,7 +15,7 @@ class CodeCoverageGoodCheck extends AbstractCodeCoverageCheck
 
     public function getDescription()
     {
-        return 'Has a "good" level of code coverage (greater than ' . $this->threshold . '%, requires slug))';
+        return 'Has a "good" level of code coverage (greater than ' . $this->threshold . '%, requires slug)';
     }
 
     public function run()

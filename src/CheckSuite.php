@@ -212,7 +212,7 @@ class CheckSuite
      */
     protected function getCheckClasses()
     {
-        $config = Yaml::parseFile(dirname(__FILE__) . '/../config.yml');
+        $config = Yaml::parse(file_get_contents(dirname(__FILE__) . '/../config.yml'));
         if (empty($config[self::class]['checks'])) {
             return [];
         }
