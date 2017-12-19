@@ -1,0 +1,27 @@
+{
+    "name": "silverstripe/moduleratings",
+    "description": "A library to provide module code quality ratings",
+    "type": "library",
+    "require": {
+        "symfony/yaml": "~3.4|~4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Robbie Averill",
+            "email": "robbie@silverstripe.com"
+        }
+    ],
+    "autoload": {
+        "SilverStripe\\ModuleRatings\\": "src/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}

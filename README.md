@@ -1,0 +1,1 @@
+# SilverStripe module ratings
