@@ -151,12 +151,30 @@ class CheckSuite
     }
 
     /**
-     * Get the details result for the checks in this suite
+     * Get the detailed results for the checks in this suite
      * @return array
      */
     public function getCheckDetails()
     {
         return $this->checkDetails;
+    }
+
+    /**
+     * Get the detailed result for one of the checks in this suite
+     *
+     * @param string $key
+     * @return array
+     * @throws Exception If the check was not in the details
+     */
+    public function getCheckDetail($key)
+    {
+        $checks = $this->getCheckDetails();
+
+        if (isset($checks[$key])) {
+            return $checks[$key];
+        }
+
+        throw new Exception('Check with code ' . $key. ' was not found');
     }
 
     /**
