@@ -3,7 +3,6 @@
 namespace SilverStripe\ModuleRatings\Check;
 
 use SilverStripe\ModuleRatings\Check;
-use Symfony\Component\Config\Resource\ComposerResource;
 
 class CodingStandardCheck extends Check
 {
