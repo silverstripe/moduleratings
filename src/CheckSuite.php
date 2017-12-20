@@ -9,9 +9,9 @@ use Symfony\Component\Yaml\Yaml;
 class CheckSuite
 {
     /**
-     * @var Check[]
+     * @var Check[]|null
      */
-    protected $checks = [];
+    protected $checks = null;
 
     /**
      * @var array
@@ -166,7 +166,7 @@ class CheckSuite
      */
     public function getChecks()
     {
-        if (!$this->checks) {
+        if ($this->checks === null) {
             $this->buildChecks();
         }
         return $this->checks;

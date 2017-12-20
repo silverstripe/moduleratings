@@ -18,7 +18,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "SilverStripe\\ModuleRatings\\": "src/"
+            "SilverStripe\\ModuleRatings\\": "src/",
+            "SilverStripe\\ModuleRatings\\Tests\\": "tests/"
         }
     },
     "extra": {

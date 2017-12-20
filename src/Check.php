@@ -40,7 +40,7 @@ abstract class Check
     abstract public function getDescription();
 
     /**
-     * Run the check logic, set the successful result at the ened
+     * Run the check logic, set the successful result at the end
      *
      * @return void
      */
