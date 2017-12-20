@@ -19,10 +19,10 @@ Please see the readme in that module for more information on using it.
 
 ## Requirements
 
-* symfony/yaml 3 or 4
+* [symfony/yaml](https://symfony.com/doc/current/components/yaml.html) 3 or 4
 
-**Note:** If you have conflicts with either symfony/yaml or symfony/console during installation, you may
-need to manually require an older version of one or both of those packages, e.g.:
+**Note:** If you have conflicts with either symfony/yaml or symfony/console (if using the Composer plugin)
+during installation, you may need to manually require an older version of one or both of those packages, e.g.:
 
 ``` 
 composer require symfony/yaml ~3.0
@@ -74,7 +74,26 @@ The return data from `CheckSuite::getCheckDetails` is an array with the followin
 
 ## Available checks
 
-@todo: list all checks with maximum points and description
+* "Good" code coverage (>= 40%)
+* "Great" code coverage (>= 60%)
+* Code of conduct file exists
+* PHP code is in either "code" or "src" folder
+* PHP code passes a [PSR-2](www.php-fig.org/psr/psr-2/)-ish linting standards check (phpcs.xml.dist is stored in 
+  `src/Check/CodingStandardCheck` for reference)
+* Contributing guide file exists
+* [EditorConfig](http://editorconfig.org/) configuration file exists
+* [.gitattributes](https://git-scm.com/docs/gitattributes) file exists
+* A license file exists
+* The repository has a readme
+* [Scrutinizer CI](https://scrutinizer-ci.com) is configured and has a "good" quality rating (>= 6.5/10)
+* [Travis CI](https://travis-ci.org) is configured and the last build passed successfully
+
+### Caveats
+
+Please note the following caveats/gotchas/todos:
+
+* Code coverage is currently only checked via [Codecov.io](https://codecov.io), todo: add Scrutinizer as well
+* Code repositories must exist on GitHub for external API checks to work
 
 ## Thanks!
 
@@ -82,7 +101,6 @@ A huge thank you to [Chris Pitt](https://github.com/assertchris) who originally 
 inspiration for this library.
 
 The checks in this library are heavily inspired by the original Helpful Robot checks, and are designed to
-match the SilverStripe commercially supported module standard.
+match the [SilverStripe commercially supported module standard](https://www.silverstripe.org/software/addons/supported-modules-definition/).
 
-Without Helpful Robot the SilverStripe community would look a lot less tidy
-today!
+Without Helpful Robot the SilverStripe community would look a lot less tidy today!
