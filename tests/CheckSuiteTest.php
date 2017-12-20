@@ -18,8 +18,8 @@ class CheckSuiteTest extends TestCase
 
         $this->checkSuite = new CheckSuite();
         $this->checkSuite->setChecks([
-//            new CheckSuiteTest\StubCheckFail(),
-//            new CheckSuiteTest\StubCheckPass(),
+            new CheckSuiteTest\StubCheckFail(),
+            new CheckSuiteTest\StubCheckPass(),
         ]);
     }
 
@@ -30,5 +30,26 @@ class CheckSuiteTest extends TestCase
     {
         $this->checkSuite->setChecks([]);
         $this->checkSuite->run();
+    }
+
+    public function testRun()
+    {
+        $this->checkSuite->run();
+
+        $expected = [
+            'fails' => [
+                'description' => 'a stub that always fails',
+                'maximum' => 5,
+                'points' => 0,
+            ],
+            'passes' => [
+                'description' => 'a stub that always passes',
+                'maximum' => 5,
+                'points' => 5,
+            ],
+        ];
+
+        $this->assertSame(5, $this->checkSuite->getPoints());
+        $this->assertEquals($expected, $this->checkSuite->getCheckDetails());
     }
 }
