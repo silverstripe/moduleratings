@@ -2,6 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
+use Exception;
 use SilverStripe\ModuleRatings\Check;
 
 class CodingStandardCheck extends Check
@@ -41,7 +42,7 @@ class CodingStandardCheck extends Check
 
         $output = null;
         exec(
-            'cd ' . dirname(__FILE__) . '/../../../../../ && vendor/bin/phpcs -q '
+            'cd ' . $this->getProjectRoot() . ' && vendor/bin/phpcs -q '
             . $standard . ' ' . $path,
             $ouput,
             $exitCode
@@ -60,5 +61,18 @@ class CodingStandardCheck extends Check
     public function getStandardsFile()
     {
         return $this->standardsFile;
+    }
+
+    public function getProjectRoot()
+    {
+        $base = dirname(__FILE__);
+        if (file_exists($base . '/../../../../../vendor/autoload.php')) {
+            // Installed in the vendor folder
+            return $base . '/../../../../../';
+        } elseif (file_exists($base . '/../../vendor/autoload.php')) {
+            // Installed as the project
+            return $base . '/../../';
+        }
+        throw new Exception('Could not find the project root folder!');
     }
 }
