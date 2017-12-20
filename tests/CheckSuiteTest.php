@@ -3,6 +3,7 @@
 namespace SilverStripe\ModuleRatings\Tests;
 
 use PHPUnit\Framework\TestCase;
+use SilverStripe\ModuleRatings\Check;
 use SilverStripe\ModuleRatings\CheckSuite;
 
 class CheckSuiteTest extends TestCase
@@ -51,5 +52,18 @@ class CheckSuiteTest extends TestCase
 
         $this->assertSame(5, $this->checkSuite->getPoints());
         $this->assertEquals($expected, $this->checkSuite->getCheckDetails());
+    }
+
+    public function testRunWithDelegatedCallback()
+    {
+        $called = false;
+        $callback = function (Check $check, callable $delegate) use (&$called) {
+            $called = true;
+            $delegate($check);
+        };
+
+        $this->checkSuite->run($callback);
+        $this->assertTrue($called, 'Callback method was run');
+        $this->assertSame(5, $this->checkSuite->getPoints(), 'Callback method delegated');
     }
 }

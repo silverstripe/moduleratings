@@ -42,8 +42,8 @@ class ScrutinizerCheck extends Check
             return;
         }
 
-        $rating = $response['applications']['master']['index']['_embedded']['project']['metric_values']['scrutinizer.quality'];
-        if ($rating >= self::THRESHOLD) {
+        $metrics = $response['applications']['master']['index']['_embedded']['project']['metric_values'];
+        if ($metrics['scrutinizer.quality'] >= self::THRESHOLD) {
             $this->setSuccessful(true);
         }
     }
