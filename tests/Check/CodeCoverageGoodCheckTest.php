@@ -4,13 +4,12 @@ namespace SilverStripe\ModuleRatings\Tests\Check;
 
 use PHPUnit\Framework\TestCase;
 use SilverStripe\ModuleRatings\Check\CodeCoverageGoodCheck;
-use SilverStripe\ModuleRatings\Check\CodeCoverageGreatCheck;
 
 class CodeCoverageGoodCheckTest extends TestCase
 {
     /**
-     * @covers CodeCoverageGoodCheck::run
-     * @covers CodeCoverageGreatCheck::run
+     * @covers \SilverStripe\ModuleRatings\Check\CodeCoverageGoodCheck::run
+     * @covers \SilverStripe\ModuleRatings\Check\CodeCoverageGreatCheck::run
      *
      * @param float $coverage
      * @param bool $expected
