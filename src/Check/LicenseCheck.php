@@ -6,8 +6,6 @@ use SilverStripe\ModuleRatings\Check;
 
 class LicenseCheck extends Check
 {
-    protected $points = 5;
-
     public function getKey()
     {
         return 'has_license';

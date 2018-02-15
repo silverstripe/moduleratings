@@ -6,8 +6,6 @@ use SilverStripe\ModuleRatings\Check;
 
 class GitAttributesFileCheck extends Check
 {
-    protected $points = 2;
-
     public function getKey()
     {
         return 'has_gitattributes_file';

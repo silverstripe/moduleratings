@@ -8,8 +8,6 @@ class ScrutinizerCheck extends Check
 {
     const THRESHOLD = 6.5;
 
-    protected $points = 10;
-
     public function getKey()
     {
         return 'good_scrutinizer_score';

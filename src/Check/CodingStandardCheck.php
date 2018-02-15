@@ -7,8 +7,6 @@ use SilverStripe\ModuleRatings\Check;
 
 class CodingStandardCheck extends Check
 {
-    protected $points = 10;
-
     /**
      * The path to the PHPCS standards file
      *

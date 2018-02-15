@@ -6,8 +6,6 @@ use SilverStripe\ModuleRatings\Check;
 
 class TravisCheck extends Check
 {
-    protected $points = 10;
-
     public function getKey()
     {
         return 'travis_passing';
