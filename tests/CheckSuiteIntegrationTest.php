@@ -31,7 +31,7 @@ class CheckSuiteIntegrationTest extends TestCase
     {
         $this->checkSuite->run();
 
-        $this->assertEquals(55, $this->checkSuite->getScore());
+        $this->assertEquals(58, $this->checkSuite->getScore());
         $this->assertEquals(0, $this->checkSuite->getCheckDetails()['travis_passing']['points']);
     }
 }

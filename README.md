@@ -85,6 +85,7 @@ The return data from `CheckSuite::getCheckDetails` is an array with the followin
 * PHP code passes a [PSR-2](www.php-fig.org/psr/psr-2/)-ish linting standards check (phpcs.xml.dist is stored in 
   `src/Check/CodingStandardCheck` for reference)
 * Contributing guide file exists
+* Has documentation
 * [EditorConfig](http://editorconfig.org/) configuration file exists
 * [.gitattributes](https://git-scm.com/docs/gitattributes) file exists
 * A license file exists
