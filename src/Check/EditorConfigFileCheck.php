@@ -6,8 +6,6 @@ use SilverStripe\ModuleRatings\Check;
 
 class EditorConfigFileCheck extends Check
 {
-    protected $points = 5;
-
     public function getKey()
     {
         return 'has_editorconfig_file';

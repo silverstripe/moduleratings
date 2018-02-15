@@ -1,14 +1,29 @@
+# Define the registered checks for the check suite
 SilverStripe\ModuleRatings\CheckSuite:
   checks:
-    - SilverStripe\ModuleRatings\Check\CodeCoverageGoodCheck
-    - SilverStripe\ModuleRatings\Check\CodeCoverageGreatCheck
-    - SilverStripe\ModuleRatings\Check\CodeOfConductFileCheck
-    - SilverStripe\ModuleRatings\Check\CodeOrSrcFolderCheck
-    - SilverStripe\ModuleRatings\Check\CodingStandardCheck
-    - SilverStripe\ModuleRatings\Check\ContributingFileCheck
-    - SilverStripe\ModuleRatings\Check\EditorConfigFileCheck
-    - SilverStripe\ModuleRatings\Check\GitAttributesFileCheck
-    - SilverStripe\ModuleRatings\Check\LicenseCheck
-    - SilverStripe\ModuleRatings\Check\ReadmeCheck
-    - SilverStripe\ModuleRatings\Check\ScrutinizerCheck
-    - SilverStripe\ModuleRatings\Check\TravisCheck
+    # Each check class is defined with a "points" key indicating the number
+    # of points that will be given if the check is successful
+    SilverStripe\ModuleRatings\Check\CodeCoverageGoodCheck:
+      points: 5
+    SilverStripe\ModuleRatings\Check\CodeCoverageGreatCheck:
+      points: 5
+    SilverStripe\ModuleRatings\Check\CodeOfConductFileCheck:
+      points: 2
+    SilverStripe\ModuleRatings\Check\CodeOrSrcFolderCheck:
+      points: 5
+    SilverStripe\ModuleRatings\Check\CodingStandardCheck:
+      points: 10
+    SilverStripe\ModuleRatings\Check\ContributingFileCheck:
+      points: 2
+    SilverStripe\ModuleRatings\Check\EditorConfigFileCheck:
+      points: 5
+    SilverStripe\ModuleRatings\Check\GitAttributesFileCheck:
+      points: 2
+    SilverStripe\ModuleRatings\Check\LicenseCheck:
+      points: 5
+    SilverStripe\ModuleRatings\Check\ReadmeCheck:
+      points: 5
+    SilverStripe\ModuleRatings\Check\ScrutinizerCheck:
+      points: 10
+    SilverStripe\ModuleRatings\Check\TravisCheck:
+      points: 10

@@ -92,6 +92,9 @@ The return data from `CheckSuite::getCheckDetails` is an array with the followin
 * [Scrutinizer CI](https://scrutinizer-ci.com) is configured and has a "good" quality rating (>= 6.5/10)
 * [Travis CI](https://travis-ci.org) is configured and the last build passed successfully
 
+The registered checks are defined in `config.yml` along with the number of points awarded for each check given that
+it passes.
+
 ### Caveats
 
 Please note the following caveats/gotchas/todos:

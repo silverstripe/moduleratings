@@ -6,8 +6,6 @@ class CodeCoverageGreatCheck extends AbstractCodeCoverageCheck
 {
     protected $threshold = 60;
 
-    protected $points = 5;
-
     public function getKey()
     {
         return 'great_code_coverage';

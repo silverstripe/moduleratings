@@ -5,7 +5,7 @@ namespace SilverStripe\ModuleRatings;
 abstract class Check
 {
     /**
-     * The number of points given when this check is successful
+     * The number of points given when this check is successful. This is normally loaded in via configuration.
      *
      * @var int
      */

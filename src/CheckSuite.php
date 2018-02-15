@@ -210,14 +210,19 @@ class CheckSuite
     protected function buildChecks()
     {
         $checkClasses = $this->getCheckClasses();
-        foreach ($checkClasses as $checkClass) {
+        foreach ($checkClasses as $checkClass => $config) {
             if (!class_exists($checkClass)) {
                 throw new InvalidArgumentException('Registered check class ' . $checkClass . ' not found!');
+            }
+
+            if (!isset($config['points'])) {
+                $config['points'] = 0;
             }
 
             /** @var Check $check */
             $check = new $checkClass;
             $check->setSuite($this);
+            $check->setPoints($config['points']);
 
             $this->addCheck($check);
         }
@@ -226,7 +231,7 @@ class CheckSuite
     /**
      * Load the config.yml file and get the check class names from it
      *
-     * @return string[]
+     * @return array[]
      */
     protected function getCheckClasses()
     {

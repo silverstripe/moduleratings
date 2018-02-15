@@ -6,8 +6,6 @@ use SilverStripe\ModuleRatings\Check;
 
 class CodeOfConductFileCheck extends Check
 {
-    protected $points = 2;
-
     public function getKey()
     {
         return 'has_code_of_conduct_file';

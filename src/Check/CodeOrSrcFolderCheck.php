@@ -6,8 +6,6 @@ use SilverStripe\ModuleRatings\Check;
 
 class CodeOrSrcFolderCheck extends Check
 {
-    protected $points = 5;
-
     public function getKey()
     {
         return 'has_code_or_src_folder';
