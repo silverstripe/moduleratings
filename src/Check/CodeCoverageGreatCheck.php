@@ -4,7 +4,7 @@ namespace SilverStripe\ModuleRatings\Check;
 
 class CodeCoverageGreatCheck extends AbstractCodeCoverageCheck
 {
-    protected $threshold = 60;
+    protected $threshold = 75;
 
     public function getKey()
     {

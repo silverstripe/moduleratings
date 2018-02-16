@@ -79,8 +79,7 @@ The return data from `CheckSuite::getCheckDetails` is an array with the followin
 ## Available checks
 
 * "Good" code coverage (>= 40%)
-* "Great" code coverage (>= 60%)
-* Code of conduct file exists
+* "Great" code coverage (>= 75%)
 * PHP code is in either "code" or "src" folder
 * PHP code passes a [PSR-2](www.php-fig.org/psr/psr-2/)-ish linting standards check (phpcs.xml.dist is stored in 
   `src/Check/CodingStandardCheck` for reference)
