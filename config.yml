@@ -7,10 +7,8 @@ SilverStripe\ModuleRatings\CheckSuite:
       points: 5
     SilverStripe\ModuleRatings\Check\CodeCoverageGreatCheck:
       points: 5
-    SilverStripe\ModuleRatings\Check\CodeOfConductFileCheck:
-      points: 2
     SilverStripe\ModuleRatings\Check\CodeOrSrcFolderCheck:
-      points: 5
+      points: 10
     SilverStripe\ModuleRatings\Check\CodingStandardCheck:
       points: 10
     SilverStripe\ModuleRatings\Check\ContributingFileCheck:
@@ -24,8 +22,8 @@ SilverStripe\ModuleRatings\CheckSuite:
     SilverStripe\ModuleRatings\Check\LicenseCheck:
       points: 5
     SilverStripe\ModuleRatings\Check\ReadmeCheck:
-      points: 5
+      points: 10
     SilverStripe\ModuleRatings\Check\ScrutinizerCheck:
       points: 10
     SilverStripe\ModuleRatings\Check\TravisCheck:
-      points: 10
+      points: 20
