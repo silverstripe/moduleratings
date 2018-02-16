@@ -20,7 +20,7 @@ SilverStripe\ModuleRatings\CheckSuite:
     SilverStripe\ModuleRatings\Check\GitAttributesFileCheck:
       points: 2
     SilverStripe\ModuleRatings\Check\LicenseCheck:
-      points: 5
+      points: 10
     SilverStripe\ModuleRatings\Check\ReadmeCheck:
       points: 10
     SilverStripe\ModuleRatings\Check\ScrutinizerCheck:
