@@ -10,6 +10,9 @@
     <arg value="sp"/>
     <arg name="colors"/>
 
+    <!-- Only look at .php file extensions -->
+    <arg name="extensions" value="php"/>
+
     <!-- Use PSR-2 as a base standard -->
     <rule ref="PSR2">
         <!-- Allow classes to not declare a namespace -->

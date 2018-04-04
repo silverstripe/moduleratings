@@ -42,9 +42,10 @@ class CodingStandardCheck extends Check
         exec(
             'cd ' . $this->getProjectRoot() . ' && vendor/bin/phpcs -q '
             . $standard . ' ' . $path,
-            $ouput,
+            $output,
             $exitCode
         );
+
         if ($exitCode == 0) {
             $this->setSuccessful(true);
         }
