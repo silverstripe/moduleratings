@@ -49,6 +49,7 @@ class CheckSuite
         // Reset internal data collation; important if the suite is being used more than once
         $this->setPoints(0);
         $this->setCheckDetails([]);
+        $this->checks = null; // setChecks can't be used as it expects array
 
         if (!$this->getChecks()) {
             throw new Exception('No checks have been defined! Please set some in config.yml.');
