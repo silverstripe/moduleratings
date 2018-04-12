@@ -1,8 +1,8 @@
 # SilverStripe module ratings
 
-[![Build Status](https://travis-ci.org/creative-commoners/moduleratings.svg?branch=master)](https://travis-ci.org/creative-commoners/moduleratings)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/creative-commoners/moduleratings/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/creative-commoners/moduleratings/?branch=master)
-[![codecov](https://codecov.io/gh/creative-commoners/moduleratings/branch/master/graph/badge.svg)](https://codecov.io/gh/creative-commoners/moduleratings)
+[![Build Status](https://travis-ci.org/silverstripe/moduleratings.svg?branch=master)](https://travis-ci.org/silverstripe/moduleratings)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/silverstripe/moduleratings/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/moduleratings/?branch=master)
+[![codecov](https://codecov.io/gh/silverstripe/moduleratings/branch/master/graph/badge.svg)](https://codecov.io/gh/silverstripe/moduleratings)
 
 This module provides a check suite, and a set of automated checks that can be run over a SilverStripe module
 to determine a "quality rating".
@@ -17,7 +17,7 @@ You can install this library with Composer if you want to use its public API:
 composer require silverstripe/moduleratings
 ```
 
-You can also install the [silverstripe/moduleratings-plugin](https://github.com/creative-commoners/moduleratings-plugin)
+You can also install the [silverstripe/moduleratings-plugin](https://github.com/silverstripe/moduleratings-plugin)
 Composer plugin, which will provide a Composer command you can run locally to check module quality ratings.
 Please see the readme in that module for more information on using it.
 
