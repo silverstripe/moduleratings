@@ -6,15 +6,6 @@ use SilverStripe\ModuleRatings\Check;
 
 class CIPassingCheck extends Check
 {
-    /**
-     * HTTP client request options
-     *
-     * @var array
-     */
-    protected $requestOptions = [
-        'headers' => ['Accept' => 'application/json'],
-    ];
-
     public function getKey()
     {
         return 'ci_passing';
@@ -76,7 +67,9 @@ class CIPassingCheck extends Check
     protected function checkCircleCiBuild($slug)
     {
         $result = $this->getRequestClient()
-            ->get('https://circleci.com/api/v1.1/project/github/' . $slug, $this->requestOptions)
+            ->get('https://circleci.com/api/v1.1/project/github/' . $slug, [
+                'headers' => ['Accept' => 'application/json'],
+            ])
             ->getBody();
         $response = json_decode($result, true);
 
