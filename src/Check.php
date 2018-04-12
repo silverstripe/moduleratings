@@ -33,7 +33,7 @@ abstract class Check
      *
      * @var ClientInterface
      */
-    protected $requestFactory;
+    protected $requestClient;
 
     /**
      * @param ClientInterface $requestFactory
@@ -41,8 +41,9 @@ abstract class Check
     public function __construct(ClientInterface $requestClient = null)
     {
         if (!$requestClient) {
-            $this->setRequestClient(new Client);
+            $requestClient = new Client;
         }
+        $this->setRequestClient($requestClient);
     }
 
     /**
