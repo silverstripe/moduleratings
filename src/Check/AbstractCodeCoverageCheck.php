@@ -29,11 +29,18 @@ abstract class AbstractCodeCoverageCheck extends Check
         return $coverage;
     }
 
+    /**
+     * Gets test coverage level from Codecov.io, returns false if not found or missing
+     *
+     * @return bool|float|int
+     */
     public function getCodecovCoverage()
     {
         $slug = $this->getSuite()->getRepositorySlug();
         // Note: assume everyone uses the master branch
-        $result = @file_get_contents('https://codecov.io/api/gh/' . $slug . '/branch/master');
+        $result = $this->getRequestClient()
+            ->get('https://codecov.io/api/gh/' . $slug . '/branch/master')
+            ->getBody();
         $response = json_decode($result, true);
 
         // Fetch failure
@@ -54,9 +61,36 @@ abstract class AbstractCodeCoverageCheck extends Check
         return 0;
     }
 
+    /**
+     * Gets test coverage level from Scrutinizer, returns false if not found or missing
+     *
+     * @return bool|float|int
+     */
     public function getScrutinizerCoverage()
     {
-        // todo
+        $slug = $this->getSuite()->getRepositorySlug();
+        // Note: assume everyone uses the master branch
+        $result = $this->getRequestClient()
+            ->get('https://scrutinizer-ci.com/api/repositories/g/' . $slug)
+            ->getBody();
+        $response = json_decode($result, true);
+
+        // Fetch failure
+        if (!$response) {
+            return false;
+        }
+
+        // Not set up (404)
+        if (!isset($response['applications']['master'])) {
+            return false;
+        }
+
+        // Get coverage result
+        $metrics = $response['applications']['master']['index']['_embedded']['project']['metric_values'];
+        if (isset($metrics['scrutinizer.test_coverage'])) {
+            return $metrics['scrutinizer.test_coverage'] * 100;
+        }
+
         return 0;
     }
 

@@ -28,7 +28,7 @@ class TravisTest extends TestCase
             ->getMock();
 
         // Mock get to return client, we can then mock the last call easily
-        $this->client->method('get')->willReturn($this->client);
+        $this->client->method('get')->will($this->returnSelf());
 
         $this->check = $this->getMock(CIPassingCheck::class, ['checkCircleCiBuild']);
         $this->check->setRequestClient($this->client);
