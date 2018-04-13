@@ -2,9 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
-use SilverStripe\ModuleRatings\Check;
-
-class ReadmeCheck extends Check
+class ReadmeCheck extends AbstractFileCheck
 {
     public function getKey()
     {
@@ -18,12 +16,11 @@ class ReadmeCheck extends Check
 
     public function run()
     {
-        $options = ['readme', 'README', 'readme.md', 'README.md', 'readme.txt', 'README.txt'];
-        foreach ($options as $filename) {
-            if (file_exists($this->getSuite()->getModuleRoot() . '/' . $filename)) {
-                $this->setSuccessful(true);
-                break;
-            }
-        }
+        $files = $this->getFinder()
+            ->files()
+            ->in($this->getSuite()->getModuleRoot())
+            ->name('/readme(?:\.md|\.txt)?$/i');
+
+        $this->setSuccessful(count($files) > 0);
     }
 }

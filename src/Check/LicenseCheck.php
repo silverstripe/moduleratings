@@ -2,9 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
-use SilverStripe\ModuleRatings\Check;
-
-class LicenseCheck extends Check
+class LicenseCheck extends AbstractFileCheck
 {
     public function getKey()
     {
@@ -18,12 +16,11 @@ class LicenseCheck extends Check
 
     public function run()
     {
-        $options = ['license', 'LICENSE', 'license.md', 'LICENSE.md', 'license.txt', 'LICENSE.txt'];
-        foreach ($options as $filename) {
-            if (file_exists($this->getSuite()->getModuleRoot() . '/' . $filename)) {
-                $this->setSuccessful(true);
-                break;
-            }
-        }
+        $files = $this->getFinder()
+            ->files()
+            ->in($this->getSuite()->getModuleRoot())
+            ->name('/license(?:\.md|\.txt)?$/i');
+
+        $this->setSuccessful(count($files) > 0);
     }
 }

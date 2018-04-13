@@ -2,9 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
-use SilverStripe\ModuleRatings\Check;
-
-class GitAttributesFileCheck extends Check
+class GitAttributesFileCheck extends AbstractFileCheck
 {
     public function getKey()
     {
@@ -18,8 +16,12 @@ class GitAttributesFileCheck extends Check
 
     public function run()
     {
-        if (file_exists($this->getSuite()->getModuleRoot() . '/.gitattributes')) {
-            $this->setSuccessful(true);
-        }
+        $files = $this->getFinder()
+            ->files()
+            ->ignoreDotFiles(false)
+            ->in($this->getSuite()->getModuleRoot())
+            ->name('.gitattributes');
+
+        $this->setSuccessful(count($files) > 0);
     }
 }

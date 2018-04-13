@@ -2,9 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
-use SilverStripe\ModuleRatings\Check;
-
-class DocumentationCheck extends Check
+class DocumentationCheck extends AbstractFileCheck
 {
     public function getKey()
     {
@@ -18,8 +16,11 @@ class DocumentationCheck extends Check
 
     public function run()
     {
-        if (file_exists($this->getSuite()->getModuleRoot() . '/docs')) {
-            $this->setSuccessful(true);
-        }
+        $files = $this->getFinder()
+            ->directories()
+            ->in($this->getSuite()->getModuleRoot())
+            ->name('docs');
+
+        $this->setSuccessful(count($files) > 0);
     }
 }

@@ -2,9 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
-use SilverStripe\ModuleRatings\Check;
-
-class ContributingFileCheck extends Check
+class ContributingFileCheck extends AbstractFileCheck
 {
     public function getKey()
     {
@@ -18,19 +16,11 @@ class ContributingFileCheck extends Check
 
     public function run()
     {
-        $options = [
-            'contributing',
-            'CONTRIBUTING',
-            'contributing.md',
-            'CONTRIBUTING.md',
-            'contributing.txt',
-            'CONTRIBUTING.txt',
-        ];
-        foreach ($options as $filename) {
-            if (file_exists($this->getSuite()->getModuleRoot() . '/' . $filename)) {
-                $this->setSuccessful(true);
-                break;
-            }
-        }
+        $files = $this->getFinder()
+            ->files()
+            ->in($this->getSuite()->getModuleRoot())
+            ->name('/contributing(?:\.md|\.txt)?$/i');
+
+        $this->setSuccessful(count($files) > 0);
     }
 }

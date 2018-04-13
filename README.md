@@ -23,9 +23,10 @@ Please see the readme in that module for more information on using it.
 
 ## Requirements
 
+* [symfony/finder](https://symfony.com/doc/current/components/finder.html) 3 or 4
 * [symfony/yaml](https://symfony.com/doc/current/components/yaml.html) 3 or 4
 
-**Note:** If you have conflicts with either symfony/yaml or symfony/console (if using the Composer plugin)
+**Note:** If you have conflicts with any of the symfony components (if using the Composer plugin)
 during installation, you may need to manually require an older version of one or both of those packages, e.g.:
 
 ``` 
@@ -58,21 +59,21 @@ The return data from `CheckSuite::getCheckDetails` is an array with the followin
 
 ```json
 {
-    "good_code_coverage": {
-        "description": "Has a \"good\" level of code coverage (greater than 40%, requires slug)",
-        "points": 5,
-        "maximum": 5
-    },
-    "has_code_of_conduct_file": {
-        "description": "Has a code of conduct file",
-        "points": 2,
-        "maximum": 2
-    },
-    "coding_standards": {
-        "description": "The PHP code in this module passes the SilverStripe lint rules (mostly PSR-2)",
-        "points": 0,
-        "maximum": 10
-    }
+  "good_code_coverage": {
+    "description": "Has a \"good\" level of code coverage (greater than 40%, requires slug)",
+    "points": 5,
+    "maximum": 5
+  },
+  "has_code_of_conduct_file": {
+    "description": "Has a code of conduct file",
+    "points": 2,
+    "maximum": 2
+  },
+  "coding_standards": {
+    "description": "The PHP code in this module passes the SilverStripe lint rules (mostly PSR-2)",
+    "points": 0,
+    "maximum": 10
+  }
  }
 ```
 
@@ -100,7 +101,6 @@ it passes.
 
 Please note the following caveats/gotchas/todos:
 
-* Code coverage is currently only checked via [Codecov.io](https://codecov.io), todo: add Scrutinizer as well
 * Code repositories must exist on GitHub for external API checks to work
 
 ## Thanks!
