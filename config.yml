@@ -25,5 +25,5 @@ SilverStripe\ModuleRatings\CheckSuite:
       points: 10
     SilverStripe\ModuleRatings\Check\ScrutinizerCheck:
       points: 10
-    SilverStripe\ModuleRatings\Check\TravisCheck:
+    SilverStripe\ModuleRatings\Check\CIPassingCheck:
       points: 20

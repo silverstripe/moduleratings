@@ -27,7 +27,9 @@ class ScrutinizerCheck extends Check
             return;
         }
 
-        $result = @file_get_contents('https://scrutinizer-ci.com/api/repositories/g/' . $slug);
+        $result = $this->getRequestClient()
+            ->get('https://scrutinizer-ci.com/api/repositories/g/' . $slug)
+            ->getBody();
         $response = json_decode($result, true);
 
         // Fetch failure

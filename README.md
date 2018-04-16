@@ -78,8 +78,8 @@ The return data from `CheckSuite::getCheckDetails` is an array with the followin
 
 ## Available checks
 
-* "Good" code coverage (>= 40%)
-* "Great" code coverage (>= 75%)
+* "Good" code coverage (>= 40%) (via either Scrutinizer CI or Codecov.io)
+* "Great" code coverage (>= 75%) (via either Scrutinizer CI or Codecov.io)
 * PHP code is in either "code" or "src" folder
 * PHP code passes a [PSR-2](www.php-fig.org/psr/psr-2/)-ish linting standards check (phpcs.xml.dist is stored in 
   `src/Check/CodingStandardCheck` for reference)
@@ -90,7 +90,8 @@ The return data from `CheckSuite::getCheckDetails` is an array with the followin
 * A license file exists
 * The repository has a readme
 * [Scrutinizer CI](https://scrutinizer-ci.com) is configured and has a "good" quality rating (>= 6.5/10)
-* [Travis CI](https://travis-ci.org) is configured and the last build passed successfully
+* One of either [Travis CI](https://travis-ci.org) or [CircleCI](https://circieci.com) is configured and the last build
+  passed successfully
 
 The registered checks are defined in `config.yml` along with the number of points awarded for each check given that
 it passes.
