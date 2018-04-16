@@ -2,6 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Tests\Check\CIPassingCheck;
 
+use Exception;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use SilverStripe\ModuleRatings\Check\CIPassingCheck;
@@ -81,6 +82,13 @@ class CircleCITest extends TestCase
         $this->client->method('getBody')->willReturn('{
             "unrelated": "information"
         }');
+        $this->check->run();
+        $this->assertFalse($this->check->getSuccessful());
+    }
+
+    public function testGuzzleThrowsException()
+    {
+        $this->client->method('getBody')->will($this->throwException(new Exception));
         $this->check->run();
         $this->assertFalse($this->check->getSuccessful());
     }

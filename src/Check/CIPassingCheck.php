@@ -2,6 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
+use Exception;
 use SilverStripe\ModuleRatings\Check;
 
 class CIPassingCheck extends Check
@@ -36,9 +37,14 @@ class CIPassingCheck extends Check
      */
     protected function checkTravisBuild($slug)
     {
-        $result = $this->getRequestClient()
-            ->get('https://api.travis-ci.org/repositories/' . $slug . '.json')
-            ->getBody();
+        try {
+            $result = $this->getRequestClient()
+                ->get('https://api.travis-ci.org/repositories/' . $slug . '.json')
+                ->getBody();
+        } catch (Exception $ex) {
+            $result = '';
+        }
+
         $response = json_decode($result, true);
 
         // Fetch failure
@@ -66,11 +72,15 @@ class CIPassingCheck extends Check
      */
     protected function checkCircleCiBuild($slug)
     {
-        $result = $this->getRequestClient()
-            ->get('https://circleci.com/api/v1.1/project/github/' . $slug, [
-                'headers' => ['Accept' => 'application/json'],
-            ])
-            ->getBody();
+        try {
+            $result = $this->getRequestClient()
+                ->get('https://circleci.com/api/v1.1/project/github/' . $slug, [
+                    'headers' => ['Accept' => 'application/json'],
+                ])
+                ->getBody();
+        } catch (Exception $ex) {
+            $result = '';
+        }
         $response = json_decode($result, true);
 
         // Fetch failure
