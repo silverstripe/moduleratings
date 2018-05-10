@@ -19,7 +19,7 @@ class DocumentationCheck extends AbstractFileCheck
         $files = $this->getFinder()
             ->directories()
             ->in($this->getSuite()->getModuleRoot())
-            ->name('docs');
+            ->name('/^docs?$/');
 
         $this->setSuccessful(count($files) > 0);
     }
