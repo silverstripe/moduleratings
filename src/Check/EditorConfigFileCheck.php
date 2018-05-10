@@ -2,9 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
-use SilverStripe\ModuleRatings\Check;
-
-class EditorConfigFileCheck extends Check
+class EditorConfigFileCheck extends AbstractFileCheck
 {
     public function getKey()
     {
@@ -18,8 +16,12 @@ class EditorConfigFileCheck extends Check
 
     public function run()
     {
-        if (file_exists($this->getSuite()->getModuleRoot() . '/.editorconfig')) {
-            $this->setSuccessful(true);
-        }
+        $files = $this->getFinder()
+            ->files()
+            ->ignoreDotFiles(false)
+            ->in($this->getSuite()->getModuleRoot())
+            ->name('.editorconfig');
+
+        $this->setSuccessful(count($files) > 0);
     }
 }

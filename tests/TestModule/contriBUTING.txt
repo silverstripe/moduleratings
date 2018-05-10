@@ -1,0 +1,3 @@
+# Open some pull requests!
+
+This file is deliberately named with mixed casing to test different casing lookups filesystems.

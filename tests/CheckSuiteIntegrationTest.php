@@ -31,7 +31,11 @@ class CheckSuiteIntegrationTest extends TestCase
     {
         $this->checkSuite->run();
 
-        $this->assertEquals(58, $this->checkSuite->getScore());
+        $this->assertEquals(
+            58,
+            $this->checkSuite->getScore(),
+            'Checks failed. Details: ' . json_encode($this->checkSuite->getCheckDetails())
+        );
         $this->assertEquals(0, $this->checkSuite->getCheckDetails()['ci_passing']['points']);
     }
 }

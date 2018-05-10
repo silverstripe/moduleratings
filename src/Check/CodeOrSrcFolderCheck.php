@@ -2,9 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
-use SilverStripe\ModuleRatings\Check;
-
-class CodeOrSrcFolderCheck extends Check
+class CodeOrSrcFolderCheck extends AbstractFileCheck
 {
     public function getKey()
     {
@@ -18,11 +16,11 @@ class CodeOrSrcFolderCheck extends Check
 
     public function run()
     {
-        $options = ['code', 'src'];
-        foreach ($options as $folder) {
-            if (file_exists($this->getSuite()->getModuleRoot() . '/' . $folder)) {
-                $this->setSuccessful(true);
-            }
-        }
+        $files = $this->getFinder()
+            ->directories()
+            ->in($this->getSuite()->getModuleRoot())
+            ->name('/code|src$/');
+
+        $this->setSuccessful(count($files) > 0);
     }
 }

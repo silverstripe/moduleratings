@@ -31,7 +31,10 @@ class CircleCITest extends TestCase
         // Mock get to return client, we can then mock the last call easily
         $this->client->method('get')->will($this->returnSelf());
 
-        $this->check = $this->getMock(CIPassingCheck::class, ['checkTravisBuild']);
+        $this->check = $this->getMockBuilder(CIPassingCheck::class)
+            ->setMethods(['checkTravisBuild'])
+            ->getMock();
+
         $this->check->expects($this->once())->method('checkTravisBuild')->willReturn(false);
         $this->check->setRequestClient($this->client);
 
