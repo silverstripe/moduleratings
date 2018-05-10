@@ -21,6 +21,6 @@ class CodeOrSrcFolderCheck extends AbstractFileCheck
             ->in($this->getSuite()->getModuleRoot())
             ->name('/code|src$/');
 
-        $this->setSuccessful(count($files) === 1);
+        $this->setSuccessful(count($files) > 0);
     }
 }
