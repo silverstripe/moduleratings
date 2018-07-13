@@ -39,7 +39,7 @@ class CIPassingCheck extends Check
     {
         try {
             $result = $this->getRequestClient()
-                ->get('https://api.travis-ci.org/repositories/' . $slug . '.json')
+                ->get('https://api.travis-ci.org/repositories/' . $slug . '.json', $this->getOptions())
                 ->getBody();
         } catch (Exception $ex) {
             $result = '';
@@ -62,6 +62,24 @@ class CIPassingCheck extends Check
             return true;
         }
         return false;
+    }
+
+    /**
+     * Return Guzzle options that are specific to Travis CI, if available
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        $options = [];
+        if (defined('TRAVIS_CI_TOKEN')) {
+            // Note: if you've defined this constant in _ss_environment.php then it will not be available
+            // when running this as a Composer plugin
+            $options['headers'] = [
+                'Authorization' => 'token ' . TRAVIS_CI_TOKEN,
+            ];
+        }
+        return $options;
     }
 
     /**
