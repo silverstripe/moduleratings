@@ -42,6 +42,9 @@ class CIPassingCheck extends Check
                 ->get('https://api.travis-ci.org/repositories/' . $slug . '.json', $this->getOptions())
                 ->getBody();
         } catch (Exception $ex) {
+            if ($logger = $this->getSuite()->getLogger()) {
+                $logger->debug($ex->getMessage());
+            }
             $result = '';
         }
 
@@ -97,6 +100,9 @@ class CIPassingCheck extends Check
                 ])
                 ->getBody();
         } catch (Exception $ex) {
+            if ($logger = $this->getSuite()->getLogger()) {
+                $logger->debug($ex->getMessage());
+            }
             $result = '';
         }
         $response = json_decode($result, true);

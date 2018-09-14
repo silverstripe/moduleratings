@@ -4,6 +4,7 @@ namespace SilverStripe\ModuleRatings;
 
 use Exception;
 use InvalidArgumentException;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Yaml\Yaml;
 
 class CheckSuite
@@ -34,6 +35,11 @@ class CheckSuite
      * @var string
      */
     protected $repositorySlug = '';
+
+    /**
+     * @var LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Runs the check suite and processes the result of each
@@ -300,5 +306,25 @@ class CheckSuite
     public function getRepositorySlug()
     {
         return $this->repositorySlug;
+    }
+
+    /**
+     * Set a PSR-3 compatible logger
+     *
+     * @param LoggerInterface $logger
+     * @return $this
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+        return $this;
+    }
+
+    /**
+     * Get a PSR-3 compatible logger, if one is provided
+     */
+    public function getLogger()
+    {
+        return $this->logger;
     }
 }

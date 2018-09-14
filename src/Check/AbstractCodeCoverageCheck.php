@@ -2,6 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
+use Exception;
 use SilverStripe\ModuleRatings\Check;
 
 abstract class AbstractCodeCoverageCheck extends Check
@@ -37,10 +38,17 @@ abstract class AbstractCodeCoverageCheck extends Check
     public function getCodecovCoverage()
     {
         $slug = $this->getSuite()->getRepositorySlug();
-        // Note: assume everyone uses the master branch
-        $result = $this->getRequestClient()
-            ->get('https://codecov.io/api/gh/' . $slug . '/branch/master')
-            ->getBody();
+        try {
+            // Note: assume everyone uses the master branch
+            $result = $this->getRequestClient()
+                ->get('https://codecov.io/api/gh/' . $slug . '/branch/master')
+                ->getBody();
+        } catch (Exception $ex) {
+            if ($logger = $this->getSuite()->getLogger()) {
+                $logger->debug($ex->getMessage());
+            }
+            $result = '';
+        }
         $response = json_decode($result, true);
 
         // Fetch failure
@@ -70,9 +78,15 @@ abstract class AbstractCodeCoverageCheck extends Check
     {
         $slug = $this->getSuite()->getRepositorySlug();
         // Note: assume everyone uses the master branch
-        $result = $this->getRequestClient()
-            ->get('https://scrutinizer-ci.com/api/repositories/g/' . $slug)
-            ->getBody();
+        try {
+            $result = $this->getRequestClient()
+                ->get('https://scrutinizer-ci.com/api/repositories/g/' . $slug)
+                ->getBody();
+        } catch (Exception $ex) {
+            if ($logger = $this->getSuite()->getLogger()) {
+                $logger->debug($ex->getMessage());
+            }
+        }
         $response = json_decode($result, true);
 
         // Fetch failure

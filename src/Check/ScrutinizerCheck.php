@@ -2,6 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Check;
 
+use Exception;
 use SilverStripe\ModuleRatings\Check;
 
 class ScrutinizerCheck extends Check
@@ -27,9 +28,16 @@ class ScrutinizerCheck extends Check
             return;
         }
 
-        $result = $this->getRequestClient()
-            ->get('https://scrutinizer-ci.com/api/repositories/g/' . $slug)
-            ->getBody();
+        try {
+            $result = $this->getRequestClient()
+                ->get('https://scrutinizer-ci.com/api/repositories/g/' . $slug)
+                ->getBody();
+        } catch (Exception $ex) {
+            if ($logger = $this->getSuite()->getLogger()) {
+                $logger->debug($ex->getMessage());
+            }
+            $result = '';
+        }
         $response = json_decode($result, true);
 
         // Fetch failure
