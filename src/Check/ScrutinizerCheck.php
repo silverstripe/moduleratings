@@ -46,7 +46,7 @@ class ScrutinizerCheck extends Check
         }
 
         // Not set up (404)
-        if (!isset($response['applications']['master'])) {
+        if (!isset($response['applications']['master']['index']['_embedded']['project']['metric_values'])) {
             return;
         }
 
