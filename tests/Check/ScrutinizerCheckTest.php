@@ -33,7 +33,7 @@ class ScrutinizerCheckTest extends TestCase
 
         $this->check = new ScrutinizerCheck($this->client);
 
-        $suite = (new CheckSuite)->setRepositorySlug('foo/bar');
+        $suite = (new CheckSuite())->setRepositorySlug('foo/bar');
         $this->check->setSuite($suite);
     }
 

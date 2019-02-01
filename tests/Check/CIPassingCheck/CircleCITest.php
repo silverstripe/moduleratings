@@ -38,7 +38,7 @@ class CircleCITest extends TestCase
         $this->check->expects($this->once())->method('checkTravisBuild')->willReturn(false);
         $this->check->setRequestClient($this->client);
 
-        $suite = (new CheckSuite)->setRepositorySlug('foo/bar');
+        $suite = (new CheckSuite())->setRepositorySlug('foo/bar');
         $this->check->setSuite($suite);
     }
 
@@ -91,7 +91,7 @@ class CircleCITest extends TestCase
 
     public function testGuzzleThrowsException()
     {
-        $this->client->method('getBody')->will($this->throwException(new Exception));
+        $this->client->method('getBody')->will($this->throwException(new Exception()));
         $this->check->run();
         $this->assertFalse($this->check->getSuccessful());
     }

@@ -26,7 +26,7 @@ class Calculator
     public static function getInstance()
     {
         if (self::$instance == null) {
-            self::$instance = new static;
+            self::$instance = new static();
         }
         return self::$instance;
     }
@@ -45,7 +45,7 @@ class Calculator
     public function getMaxPoints()
     {
         if (!$this->maxPoints) {
-            $suite = new CheckSuite;
+            $suite = new CheckSuite();
             foreach ($suite->getChecks() as $check) {
                 $check->setSuccessful(true);
                 $this->maxPoints += $check->getPoints();

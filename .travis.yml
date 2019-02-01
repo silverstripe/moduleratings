@@ -10,6 +10,8 @@ matrix:
       env: TESTS=1 PHPCS=1
     - php: 7.2
       env: COVERAGE=1
+    - php: 7.3
+      env: TESTS=1
 
 before_script:
   - composer install --prefer-dist
@@ -17,7 +19,7 @@ before_script:
 script:
   - if [[ $TESTS ]]; then vendor/bin/phpunit; fi
   - if [[ $COVERAGE ]]; then vendor/bin/phpunit --coverage-clover=coverage.xml; fi
-  - if [[ $PHPCS ]]; then vendor/bin/phpcs --standard=PSR2 src/ tests/; fi
+  - if [[ $PHPCS ]]; then vendor/bin/phpcs --standard=PSR12 src/ tests/; fi
 
 after_success:
   - if [[ $COVERAGE ]]; then bash <(curl -s https://codecov.io/bash) -f coverage.xml; fi
