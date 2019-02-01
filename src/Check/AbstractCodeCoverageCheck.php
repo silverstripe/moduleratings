@@ -86,6 +86,7 @@ abstract class AbstractCodeCoverageCheck extends Check
             if ($logger = $this->getSuite()->getLogger()) {
                 $logger->debug($ex->getMessage());
             }
+            $result = '';
         }
         $response = json_decode($result, true);
 
