@@ -184,7 +184,7 @@ class CheckSuite
             return $checks[$key];
         }
 
-        throw new Exception('Check with code ' . $key. ' was not found');
+        throw new Exception('Check with code ' . $key . ' was not found');
     }
 
     /**
@@ -230,7 +230,7 @@ class CheckSuite
             }
 
             /** @var Check $check */
-            $check = new $checkClass;
+            $check = new $checkClass();
             $check->setSuite($this);
             $check->setPoints($config['points']);
 

@@ -41,7 +41,7 @@ abstract class Check
     public function __construct(ClientInterface $requestClient = null)
     {
         if (!$requestClient) {
-            $requestClient = new Client;
+            $requestClient = new Client();
         }
         $this->setRequestClient($requestClient);
     }

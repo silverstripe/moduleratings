@@ -28,7 +28,7 @@ class AbstractCodeCoverageCheckTest extends TestCase
     {
         parent::setUp();
 
-        $this->checkSuite = (new CheckSuite)->setRepositorySlug('foo/bar');
+        $this->checkSuite = (new CheckSuite())->setRepositorySlug('foo/bar');
 
         $this->client = $this->getMockBuilder(Client::class)
             ->setMethods(['get', 'getBody'])
