@@ -39,7 +39,7 @@ class CIPassingCheck extends Check
     {
         try {
             $result = $this->getRequestClient()
-                ->get('https://api.travis-ci.org/repositories/' . $slug . '.json', $this->getOptions())
+                ->get('https://api.travis-ci.com/repositories/' . $slug . '.json', $this->getOptions())
                 ->getBody();
         } catch (Exception $ex) {
             if ($logger = $this->getSuite()->getLogger()) {
