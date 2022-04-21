@@ -50,6 +50,7 @@ class ScrutinizerCheck extends Check
             $defaultBranch = $response['default_branch'];
         }
 
+        // Not set up (404)
         if (!isset($response['applications'][$defaultBranch]['index']['_embedded']['project']['metric_values'])) {
             return;
         }
