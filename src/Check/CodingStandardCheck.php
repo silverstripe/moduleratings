@@ -44,7 +44,7 @@ class CodingStandardCheck extends Check
             preg_match_all('/<exclude-pattern>(.*)<\/exclude-pattern>/', $moduleXml, $ignorePaths);
 
             if (count($ignorePaths) > 0 && count($ignorePaths[1]) > 0) {
-                foreach($ignorePaths[1] as $ignorePath) {
+                foreach ($ignorePaths[1] as $ignorePath) {
                     $arguments[] = '--ignore="' . $ignorePath . '"';
                 }
             }
@@ -52,7 +52,7 @@ class CodingStandardCheck extends Check
             preg_match_all('/<file>(.*)<\/file>/', $moduleXml, $includePaths);
 
             if (count($includePaths) > 0 && count($includePaths[1]) > 0) {
-                foreach($includePaths[1] as $includePath) {
+                foreach ($includePaths[1] as $includePath) {
                     $arguments[] = $this->getSuite()->getModuleRoot() . DIRECTORY_SEPARATOR . $includePath;
                 }
             } else {
