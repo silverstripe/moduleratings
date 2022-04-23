@@ -7,7 +7,9 @@ use SilverStripe\ModuleRatings\Check;
 
 class ScrutinizerCheck extends Check
 {
-    public const THRESHOLD = 6.5;
+    // phpcs:disable
+    const THRESHOLD = 6.5;
+    // phpcs:enable
 
     public function getKey()
     {
