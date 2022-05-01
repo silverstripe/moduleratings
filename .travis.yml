@@ -2,16 +2,12 @@ language: php
 
 matrix:
   include:
-    - php: 5.6
-      env: TESTS=1
-    - php: 7.0
-      env: TESTS=1
-    - php: 7.1
-      env: TESTS=1 PHPCS=1
-    - php: 7.2
-      env: COVERAGE=1
     - php: 7.3
       env: TESTS=1
+    - php: 7.4
+      env: COVERAGE=1
+    - php: 8.0
+      env: TESTS=1 PHPCS=1
 
 before_script:
   - composer install --prefer-dist
