@@ -45,12 +45,17 @@ class ScrutinizerCheck extends Check
             return;
         }
 
+        $defaultBranch = 'master';
+        if (isset($response['default_branch'])) {
+            $defaultBranch = $response['default_branch'];
+        }
+
         // Not set up (404)
-        if (!isset($response['applications']['master']['index']['_embedded']['project']['metric_values'])) {
+        if (!isset($response['applications'][$defaultBranch]['index']['_embedded']['project']['metric_values'])) {
             return;
         }
 
-        $metrics = $response['applications']['master']['index']['_embedded']['project']['metric_values'];
+        $metrics = $response['applications'][$defaultBranch]['index']['_embedded']['project']['metric_values'];
         if ($metrics['scrutinizer.quality'] >= self::THRESHOLD) {
             $this->setSuccessful(true);
         }
