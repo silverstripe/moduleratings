@@ -2,6 +2,7 @@
 
 namespace SilverStripe\ModuleRatings\Tests;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SilverStripe\ModuleRatings\Check;
 use SilverStripe\ModuleRatings\CheckSuite;
@@ -13,7 +14,7 @@ class CheckSuiteTest extends TestCase
      */
     protected $checkSuite;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -24,11 +25,9 @@ class CheckSuiteTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException Exception
-     */
     public function testRunThrowsExceptionWhenNoChecksAreDefined()
     {
+        $this->expectException(Exception::class);
         $this->checkSuite->setChecks([]);
         $this->checkSuite->run();
     }
@@ -91,11 +90,9 @@ class CheckSuiteTest extends TestCase
         $this->assertSame(['metric' => 10], $this->checkSuite->getCheckDetail('another_check'));
     }
 
-    /**
-     * @expectedException Exception
-     */
     public function testGetCheckDetailThrowsExceptionOnUnknownCheck()
     {
+        $this->expectException(Exception::class);
         $this->checkSuite->getCheckDetail('some_check_that_doesnt_exist');
     }
 
