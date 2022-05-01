@@ -1,13 +1,13 @@
-# SilverStripe module ratings
+# Silverstripe module ratings
 
 [![Build Status](https://travis-ci.org/silverstripe/moduleratings.svg?branch=master)](https://travis-ci.org/silverstripe/moduleratings)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/silverstripe/moduleratings/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/moduleratings/?branch=master)
 [![codecov](https://codecov.io/gh/silverstripe/moduleratings/branch/master/graph/badge.svg)](https://codecov.io/gh/silverstripe/moduleratings)
 
-This module provides a check suite, and a set of automated checks that can be run over a SilverStripe module
+This module provides a check suite, and a set of automated checks that can be run over a Silverstripe module
 to determine a "quality rating".
 
-This library can be installed into a SilverStripe 3 or 4 project that uses Composer.
+This library can be installed into a Silverstripe 3 or 4 project that uses Composer.
 
 ## Installation
 
@@ -70,7 +70,7 @@ The return data from `CheckSuite::getCheckDetails` is an array with the followin
     "maximum": 2
   },
   "coding_standards": {
-    "description": "The PHP code in this module passes the SilverStripe lint rules (mostly PSR-2)",
+    "description": "The PHP code in this module passes the Silverstripe lint rules (mostly PSR-2)",
     "points": 0,
     "maximum": 10
   }
@@ -109,6 +109,6 @@ A huge thank you to [Chris Pitt](https://github.com/assertchris) who originally 
 inspiration for this library.
 
 The checks in this library are heavily inspired by the original Helpful Robot checks, and are designed to
-match the [SilverStripe commercially supported module standard](https://www.silverstripe.org/software/addons/supported-modules-definition/).
+match the [Silverstripe commercially supported module standard](https://www.silverstripe.org/software/addons/supported-modules-definition/).
 
-Without Helpful Robot the SilverStripe community would look a lot less tidy today!
+Without Helpful Robot the Silverstripe community would look a lot less tidy today!
