@@ -7,7 +7,7 @@ use SilverStripe\ModuleRatings\Check;
 
 class ScrutinizerCheck extends Check
 {
-    public const THRESHOLD = 6.5;
+    const THRESHOLD = 6.5;
 
     public function getKey()
     {
