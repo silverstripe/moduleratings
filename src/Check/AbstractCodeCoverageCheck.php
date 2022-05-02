@@ -39,9 +39,35 @@ abstract class AbstractCodeCoverageCheck extends Check
     {
         $slug = $this->getSuite()->getRepositorySlug();
         try {
-            // Note: assume everyone uses the master branch
             $result = $this->getRequestClient()
-                ->get('https://codecov.io/api/gh/' . $slug . '/branch/master')
+                ->get('https://codecov.io/api/gh/' . $slug . '/branches')
+                ->getBody();
+        } catch (Exception $ex) {
+            if ($logger = $this->getSuite()->getLogger()) {
+                $logger->debug($ex->getMessage());
+            }
+            $result = '';
+        }
+        $response = json_decode($result, true);
+
+        // Fetch failure
+        if (!$response) {
+            return false;
+        }
+
+        // Not set up (404)
+        if (isset($response['meta']['status']) && (int) $response['meta']['status'] !== 200) {
+            return false;
+        }
+
+        $defaultBranch = 'master';
+        if (isset($response['repo']['branch'])) {
+            $defaultBranch = $response['repo']['branch'];
+        }
+
+        try {
+            $result = $this->getRequestClient()
+                ->get('https://codecov.io/api/gh/' . $slug . '/branch/' . $defaultBranch)
                 ->getBody();
         } catch (Exception $ex) {
             if ($logger = $this->getSuite()->getLogger()) {
@@ -95,15 +121,18 @@ abstract class AbstractCodeCoverageCheck extends Check
             return false;
         }
 
-        // Not set up (404)
-        if (!isset($response['applications']['master'])) {
+        $defaultBranch = 'master';
+        if (isset($response['default_branch'])) {
+            $defaultBranch = $response['default_branch'];
+        }
+
+        if (!isset($response['applications'][$defaultBranch]['index']['_embedded']['project']['metric_values'])) {
             return false;
         }
 
-        // Get coverage result
-        $metrics = $response['applications']['master']['index']['_embedded']['project']['metric_values'];
-        if (isset($metrics['scrutinizer.test_coverage'])) {
-            return $metrics['scrutinizer.test_coverage'] * 100;
+        $metrics = $response['applications'][$defaultBranch]['index']['_embedded']['project']['metric_values'];
+        if (isset($metrics['scrutinizer.quality'])) {
+            return $metrics['scrutinizer.quality'] * 100;
         }
 
         return 0;
